@@ -170,7 +170,7 @@ class App extends JFrame {
 
         @Override
         public void dispose() {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("scores.txt", true))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Random Balls/scores.txt", true))) {
                 writer.write(playerName + "," + counter + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -232,7 +232,7 @@ class App extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LeaderboardWindow leaderboard = new LeaderboardWindow();
-                try (Scanner scanner = new Scanner(new File("scores.txt"))) {
+                try (Scanner scanner = new Scanner(new File("Random Balls/scores.txt"))) {
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
                         String[] parts = line.split(",");
