@@ -91,6 +91,26 @@ class App extends JFrame {
             setSize(650, 650);
             setLocationRelativeTo(null);
             setResizable(false);
+
+            JButton backButton = new JButton("Back to menu");
+            backButton.setBackground(Color.RED);
+            backButton.setPreferredSize(new Dimension(200, 20));
+            backButton.setForeground(Color.lightGray);
+            backButton.setBorder(BorderFactory.createEmptyBorder());
+            backButton.setFocusPainted(false);
+
+            backButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                    App.this.setVisible(true);
+                }
+            });
+
+            JPanel buttonPanel = new JPanel(new FlowLayout());
+            buttonPanel.setOpaque(false);
+            buttonPanel.add(backButton);
+            getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+
         }
 
         private void initGameWindow() {
@@ -131,7 +151,6 @@ class App extends JFrame {
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     gameWindow.deleteBall(e.getX(), e.getY());
-                    counter++;
                     counterLabel.setText("Score: " + counter);
                     canvas.repaint();
                 }
@@ -150,6 +169,7 @@ class App extends JFrame {
                 double dy = balls.get(i).y  + balls.get(i).d/2 - y;
                 double d = Math.sqrt(dx * dx + dy * dy);
                 if (d < (double) balls.get(i).d /2) {
+                    counter++;
                     balls.remove(i);
                     break;
                 }
